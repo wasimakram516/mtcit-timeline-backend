@@ -1,7 +1,8 @@
 const multer = require("multer");
 
 // ✅ Allowed file types
-const allowedImageTypes = ["image/jpeg", "image/jpg", "image/png"];
+
+const allowedImageTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
 const allowedVideoTypes = ["video/mp4", "video/mpeg", "video/quicktime"];
 const allowedTypes = [...allowedImageTypes, ...allowedVideoTypes];
 
@@ -11,7 +12,7 @@ const storage = multer.memoryStorage();
 // ✅ File filter for allowed types
 const fileFilter = (req, file, cb) => {
   if (!allowedTypes.includes(file.mimetype)) {
-    return cb(new Error("Invalid file type. Allowed: JPG, PNG, MP4, MPEG, MOV"), false);
+    return cb(new Error("Invalid file type. Allowed: JPG, PNG, GIF, MP4, MPEG, MOV"), false);
   }
   cb(null, true);
 };

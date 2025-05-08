@@ -77,6 +77,12 @@ const socketHandler = (io) => {
       }
     });
 
+    // ✅ Broadcast language change to all clients
+socket.on("changeLanguage", (language) => {
+  console.log(`🌐 Language changed to: ${language}`);
+  io.emit("languageChanged", language);
+});
+
     // ✅ When controller selects a category/subcategory
     socket.on("selectCategory", async ({ category, subcategory, language }) => {
       console.log(
@@ -105,7 +111,7 @@ const socketHandler = (io) => {
                   _id: media._id,
                   category: media.category,
                   subcategory: media.subcategory,
-                  media: media.media[language || "en"], // ✅ only send the requested language
+                  media: media.media[language || "en"], 
                   pinpoint: media.pinpoint,
                 });
               } else {
