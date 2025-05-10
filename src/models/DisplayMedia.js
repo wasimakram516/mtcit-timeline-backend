@@ -47,12 +47,10 @@ const DisplayMediaSchema = new mongoose.Schema(
       position: {
         x: {
           type: Number,
-          min: 0,
           max: 100,
         },
         y: {
           type: Number,
-          min: 0,
           max: 100,
         },
       },
