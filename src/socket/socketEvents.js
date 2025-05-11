@@ -131,6 +131,12 @@ const socketHandler = (io) => {
       }
     });
 
+    // Controller triggers Carbon Mode
+    socket.on("toggleCarbonMode", ({ active, value }) => {
+      console.log(`🌍 Carbon Mode: ${active ? "ON" : "OFF"} | Value: ${value}`);
+      io.emit("carbonMode", { active, value });
+    });
+
     socket.on("disconnect", (reason) => {
       console.log(`❌ Client disconnected: ${socket.id} - Reason: ${reason}`);
     });
